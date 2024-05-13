@@ -23,7 +23,6 @@ public class Health : MonoBehaviour
         hp-=0.5f;
         hp = Mathf.Max(hp,0);
         Debug.Log(Mathf.Floor(hp));
-        Debug.Log(hp);
         GameObject heartObj = hearts[(int) Mathf.Floor(hp)];
 
         Heart health = heartObj.GetComponent<Heart>();

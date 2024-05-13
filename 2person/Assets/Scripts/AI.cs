@@ -55,7 +55,7 @@ public class AI : MonoBehaviour
 
 void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("a");
+       
         // Check if the colliding object has the tag "projectile"
         if (other.CompareTag("projectile"))
         {

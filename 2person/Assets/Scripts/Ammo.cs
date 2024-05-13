@@ -18,16 +18,13 @@ public class Ammo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J)){
-        UseAmmo(1);
-       } 
+
     }
 
     public void UseAmmo(int num)
     {
         ammo-=num;
         float ammoPerc = (float)ammo/(float)maxAmmo;
-        Debug.Log(ammoPerc);
         ammoBar.value = ammoPerc;
 
 
