@@ -22,7 +22,13 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spr;
 
+    public GameObject stem;
 
+    // Jump variables
+    private Rigidbody2D rb2d;
+    public float jumpPower;
+    private BoxCollider2D boxCollider2D;
+    [SerializeField] private LayerMask platformsLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;
         hand = GameObject.Find("Hand");
         spr = GetComponent<SpriteRenderer>();
+        jumpPower = 15;
+        rb2d = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -46,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
     if (Input.GetKey(KeyCode.A)){
         transform.position += Vector3.left* speed * Time.deltaTime;
         }
-    
+    if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            rb2d.velocity = Vector2.up * jumpPower;
+        }
     
     }
 
@@ -83,5 +95,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
- 
+    private bool IsGrounded()
+    {
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, 0.1f, platformsLayerMask);
+        return raycastHit2D.collider != null;
+    }
+
 }
