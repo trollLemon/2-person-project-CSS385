@@ -22,7 +22,7 @@ public class Objective : MonoBehaviour
         level3.SetActive(false);
         gameOver.enabled = false;
         enemiesKilled = 0;
-        health = 100;
+        health = 1000;
     }
 
     // Update is called once per frame

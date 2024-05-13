@@ -19,7 +19,7 @@ public class Health : MonoBehaviour
     }
 
 
-    void Damage(){
+    public void Damage(){
         hp-=0.5f;
         hp = Mathf.Max(hp,0);
         Debug.Log(Mathf.Floor(hp));

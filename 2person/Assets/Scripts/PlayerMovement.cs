@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mouseWorldPosition;
     private Camera mainCamera;
     public int handReach = 3;
-
+    public Health healthBar;
     private LookDirection lookDirection;
 
     private SpriteRenderer spr;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         jumpPower = 15;
         rb2d = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
+        healthBar = GameObject.Find("Health").GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -99,6 +100,17 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, 0.1f, platformsLayerMask);
         return raycastHit2D.collider != null;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+      
+        if (other.CompareTag("Bug"))
+        {
+          
+            healthBar.Damage();
+        }
+ 
     }
 
 }
